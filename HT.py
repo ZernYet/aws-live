@@ -39,4 +39,41 @@ def RFLoad(inputList):
         
     return predicted_grade
 
+def DTLoad(inputList):
+    DTClassifier = joblib.load("DT_Classifier.joblib")
+    predicted_number = np.array_str(DTClassifier.predict(preprocessing.normalize(inputList)))
+#change the predicted number into human readable grade classification
+    if predicted_number == '[1]':
+        predicted_grade = "Your predicted CGPA next sem is 2.0 and below.\n Please pay more effort as you will fail the upcoming semester"
+    elif predicted_number == '[2]':
+        predicted_grade = "Your predicted CGPA next sem is 2.00 - 2.75.\n Your CGPA can be better, GAMBATEH "
+    elif predicted_number == '[3]':
+        predicted_grade = "Your predicted CGPA next sem is 2.75 - 3.75.\n Well done, let's aim for a higher CGPA"       
+    elif predicted_number == '[4]':
+        predicted_grade = "Your predicted CGPA next sem is 3.75 and above.\n Excellent! please keep it up"       
+    else: 
+        predicted_grade = "something wrong"
+        
+    return predicted_grade
+
+def LRLoad(inputList):
+    LRClassifier = joblib.load("LR_Classifier.joblib")
+    predicted_number = np.array_str(LRClassifier.predict(preprocessing.normalize(inputList)))
+#change the predicted number into human readable grade classification
+    if predicted_number == '[1]':
+        predicted_grade = "Your predicted CGPA next sem is 2.0 and below.\n Please pay more effort as you will fail the upcoming semester"
+    elif predicted_number == '[2]':
+        predicted_grade = "Your predicted CGPA next sem is 2.00 - 2.75.\n Your CGPA can be better, GAMBATEH "
+    elif predicted_number == '[3]':
+        predicted_grade = "Your predicted CGPA next sem is 2.75 - 3.75.\n Well done, let's aim for a higher CGPA"       
+    elif predicted_number == '[4]':
+        predicted_grade = "Your predicted CGPA next sem is 3.75 and above.\n Excellent! please keep it up"       
+    else: 
+        predicted_grade = "something wrong"
+        
+    return predicted_grade
+
+
+
+
 
